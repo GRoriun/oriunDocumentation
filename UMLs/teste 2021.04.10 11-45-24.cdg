@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="teste">
+  <ClassDiagramComponents>
+    <Class name="ElementController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="154.0" yPosition="1307.0">
+      <Fields>
+        <Field name="elementService" type="ElementService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerElementos" returnType="ArrayList&lt;ElementModel&gt;" visibility="public"/>
+        <Method name="guardardeporte" returnType="ElementModel" visibility="public">
+          <Argument type="ElementModel" name="element"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EventController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="1804.0" yPosition="1567.0">
+      <Fields>
+        <Field name="eventService" type="EventService" visibility="package"/>
+        <Field name="user_eventService" type="User_eventService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerEventos" returnType="ArrayList&lt;EventModel&gt;" visibility="public"/>
+        <Method name="guardarevento" returnType="EventModel" visibility="public">
+          <Argument type="EventModel" name="event"/>
+        </Method>
+        <Method name="obtenerEventosporusuario" returnType="ArrayList&lt;EventModel&gt;" visibility="public">
+          <Argument type="String" name="user_name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NotificationController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="352.0" yPosition="374.0">
+      <Fields>
+        <Field name="notificationService" type="NotificationService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerNotificaciones" returnType="ArrayList&lt;NotificationModel&gt;" visibility="public"/>
+        <Method name="guardarnotificacion" returnType="NotificationModel" visibility="public">
+          <Argument type="NotificationModel" name="notification"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RolesController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="445.0" yPosition="290.0">
+      <Fields>
+        <Field name="rolesService" type="RolesService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerRoles" returnType="ArrayList&lt;RolesModel&gt;" visibility="public"/>
+        <Method name="guardarroles" returnType="RolesModel" visibility="public">
+          <Argument type="RolesModel" name="roles"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SportController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="1394.0" yPosition="1808.0">
+      <Fields>
+        <Field name="sportService" type="SportService" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerDeportes" returnType="ArrayList&lt;SportModel&gt;" visibility="public"/>
+        <Method name="guardardeporte" returnType="SportModel" visibility="public">
+          <Argument type="SportModel" name="sports"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserController" package="com.oriun.oriun.Controllers" visibility="public" xPosition="662.0" yPosition="165.0">
+      <Fields>
+        <Field name="userService" type="UserService" visibility="package"/>
+        <Field name="passwordEncoder" type="PasswordEncoder" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="obtenerUsuarios" returnType="ArrayList&lt;UserModel&gt;" visibility="public"/>
+        <Method name="register" returnType="ResponseEntity" visibility="public">
+          <Argument type="String" name="user_name"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="login" returnType="ResponseEntity" visibility="public">
+          <Argument type="HashMap&lt;String, Object&gt;" name="user"/>
+        </Method>
+        <Method name="getJWTToken" returnType="String" visibility="private">
+          <Argument type="String" name="user_name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HelloWorldController" package="com.oriun.oriun.Login" visibility="public" xPosition="1031.0" yPosition="1899.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="helloWorld" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JWTAuthorizationFilter" package="com.oriun.oriun.Login" visibility="public" xPosition="1822.0" yPosition="633.0">
+      <Fields>
+        <Field name="HEADER" type="String" visibility="private" isFinal="true"/>
+        <Field name="PREFIX" type="String" visibility="private" isFinal="true"/>
+        <Field name="SECRET" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="doFilterInternal" returnType="void" visibility="protected">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="response"/>
+          <Argument type="FilterChain" name="chain"/>
+        </Method>
+        <Method name="validateToken" returnType="Claims" visibility="private">
+          <Argument type="HttpServletRequest" name="request"/>
+        </Method>
+        <Method name="setUpSpringAuthentication" returnType="void" visibility="private">
+          <Argument type="Claims" name="claims"/>
+        </Method>
+        <Method name="existeJWTToken" returnType="boolean" visibility="private">
+          <Argument type="HttpServletRequest" name="request"/>
+          <Argument type="HttpServletResponse" name="res"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ElementModel" package="com.oriun.oriun.Models" visibility="public" xPosition="1503.0" yPosition="1746.0">
+      <Fields>
+        <Field name="ID_ELEMENT" type="int" visibility="private"/>
+        <Field name="NAME_LOCATION" type="String" visibility="private"/>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+        <Field name="AVAILABLE" type="boolean" visibility="private"/>
+        <Field name="DESCRIPTION" type="String" visibility="private"/>
+        <Field name="ELEMENT_NAME" type="String" visibility="private"/>
+        <Field name="ELEMENT_IMAGE" type="Blob" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id_element"/>
+          <Argument type="boolean" name="available"/>
+          <Argument type="String" name="description"/>
+          <Argument type="String" name="element_name"/>
+          <Argument type="Blob" name="element_image"/>
+          <Argument type="String" name="name_location"/>
+          <Argument type="String" name="name_sport"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getID_ELEMENT" returnType="int" visibility="public"/>
+        <Method name="setID_ELEMENT" returnType="void" visibility="public">
+          <Argument type="int" name="ID_ELEMENT"/>
+        </Method>
+        <Method name="getNAME_LOCATION" returnType="String" visibility="public"/>
+        <Method name="setNAME_LOCATION" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_LOCATION"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+        <Method name="isAVAILABLE" returnType="boolean" visibility="public"/>
+        <Method name="setAVAILABLE" returnType="void" visibility="public">
+          <Argument type="boolean" name="AVAILABLE"/>
+        </Method>
+        <Method name="getDESCRIPTION" returnType="String" visibility="public"/>
+        <Method name="setDESCRIPTION" returnType="void" visibility="public">
+          <Argument type="String" name="DESCRIPTION"/>
+        </Method>
+        <Method name="getELEMENT_NAME" returnType="String" visibility="public"/>
+        <Method name="setELEMENT_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="ELEMENT_NAME"/>
+        </Method>
+        <Method name="getELEMENT_IMAGE" returnType="Blob" visibility="public"/>
+        <Method name="setELEMENT_IMAGE" returnType="void" visibility="public">
+          <Argument type="Blob" name="ELEMENT_IMAGE"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EventModel" package="com.oriun.oriun.Models" visibility="public" xPosition="1031.0" yPosition="100.0">
+      <Fields>
+        <Field name="ID_EVENT" type="int" visibility="private"/>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="NAME_LOC_SPORT" type="String" visibility="private"/>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+        <Field name="EVENT_DESCRIPTION" type="String" visibility="private"/>
+        <Field name="EVENT_INIT" type="LocalDate" visibility="private"/>
+        <Field name="EVENT_END" type="LocalDate" visibility="private"/>
+        <Field name="CAPACITY" type="double" visibility="private"/>
+        <Field name="OTHER_SPORT" type="String" visibility="private"/>
+        <Field name="EVENT_INIT_HOUR" type="LocalDateTime" visibility="private"/>
+        <Field name="EVENT_FINISH_HOUR" type="LocalDateTime" visibility="private"/>
+        <Field name="EVENT_TITLE" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="ID_EVENT"/>
+          <Argument type="String" name="USER_NAME"/>
+          <Argument type="String" name="NAME_LOC_SPORT"/>
+          <Argument type="String" name="NAME_SPORT"/>
+          <Argument type="String" name="EVENT_DESCRIPTION"/>
+          <Argument type="LocalDate" name="EVENT_INIT"/>
+          <Argument type="LocalDate" name="EVENT_END"/>
+          <Argument type="double" name="CAPACITY"/>
+          <Argument type="String" name="OTHER_SPORT"/>
+          <Argument type="LocalDateTime" name="EVENT_INIT_HOUR"/>
+          <Argument type="LocalDateTime" name="EVENT_FINISH_HOUR"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEVENT_TITLE" returnType="String" visibility="public"/>
+        <Method name="setEVENT_TITLE" returnType="void" visibility="public">
+          <Argument type="String" name="EVENT_TITLE"/>
+        </Method>
+        <Method name="getID_EVENT" returnType="int" visibility="public"/>
+        <Method name="setID_EVENT" returnType="void" visibility="public">
+          <Argument type="int" name="ID_EVENT"/>
+        </Method>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getNAME_LOC_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_LOC_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_LOC_SPORT"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+        <Method name="getEVENT_DESCRIPTION" returnType="String" visibility="public"/>
+        <Method name="setEVENT_DESCRIPTION" returnType="void" visibility="public">
+          <Argument type="String" name="EVENT_DESCRIPTION"/>
+        </Method>
+        <Method name="getEVENT_INIT" returnType="LocalDate" visibility="public"/>
+        <Method name="setEVENT_INIT" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="EVENT_INIT"/>
+        </Method>
+        <Method name="getEVENT_END" returnType="LocalDate" visibility="public"/>
+        <Method name="setEVENT_END" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="EVENT_END"/>
+        </Method>
+        <Method name="getCAPACITY" returnType="double" visibility="public"/>
+        <Method name="setCAPACITY" returnType="void" visibility="public">
+          <Argument type="double" name="CAPACITY"/>
+        </Method>
+        <Method name="getOTHER_SPORT" returnType="String" visibility="public"/>
+        <Method name="setOTHER_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="OTHER_SPORT"/>
+        </Method>
+        <Method name="getEVENT_INIT_HOUR" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setEVENT_INIT_HOUR" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="EVENT_INIT_HOUR"/>
+        </Method>
+        <Method name="getEVENT_FINISH_HOUR" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setEVENT_FINISH_HOUR" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="EVENT_FINISH_HOUR"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LocationsibuModel" package="com.oriun.oriun.Models" visibility="public" xPosition="1278.0" yPosition="1855.0">
+      <Fields>
+        <Field name="NAME_LOCATION" type="String" visibility="private"/>
+        <Field name="OPEN" type="boolean" visibility="private"/>
+        <Field name="IMAGE_LOCATION" type="Blob" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name_loc_sport"/>
+          <Argument type="boolean" name="open"/>
+          <Argument type="Blob" name="image"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNAME_LOCATION" returnType="String" visibility="public"/>
+        <Method name="setNAME_LOCATION" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_LOCATION"/>
+        </Method>
+        <Method name="isOPEN" returnType="boolean" visibility="public"/>
+        <Method name="setOPEN" returnType="void" visibility="public">
+          <Argument type="boolean" name="OPEN"/>
+        </Method>
+        <Method name="getIMAGE_LOCATION" returnType="Blob" visibility="public"/>
+        <Method name="setIMAGE_LOCATION" returnType="void" visibility="public">
+          <Argument type="Blob" name="IMAGE_LOCATION"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LocationsportModel" package="com.oriun.oriun.Models" visibility="public" xPosition="550.0" yPosition="1779.0">
+      <Fields>
+        <Field name="NAME_LOC_SPORT" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name_loc_sport"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName_loc_sport" returnType="String" visibility="public"/>
+        <Method name="setName_loc_sport" returnType="void" visibility="public">
+          <Argument type="String" name="name_loc_sport"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Location_sportsPK" package="com.oriun.oriun.Models" visibility="public" xPosition="102.0" yPosition="1062.0">
+      <Fields>
+        <Field name="NAME_LOC_SPORT" type="String" visibility="private"/>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getNAME_LOC_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_LOC_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_LOC_SPORT"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Location_sport_sportsModel" package="com.oriun.oriun.Models" visibility="public" xPosition="1900.0" yPosition="1000.0">
+      <Fields>
+        <Field name="location_sportsPK" type="Location_sportsPK" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Location_sportsPK" name="loc_sportPK"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNAME_LOC_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_LOC_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_LOC_SPORT"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NotificationModel" package="com.oriun.oriun.Models" visibility="public" xPosition="905.0" yPosition="1895.0">
+      <Fields>
+        <Field name="ID_NOTIFICATION" type="int" visibility="private"/>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+        <Field name="ID_EVENT" type="int" visibility="private"/>
+        <Field name="NOTIFICATION_DATE" type="LocalDate" visibility="private"/>
+        <Field name="TIME_NOTIFICATION" type="LocalDateTime" visibility="private"/>
+        <Field name="EXPIRATION_TIME" type="LocalDateTime" visibility="private"/>
+        <Field name="NOTIFICATION_DESCRIPTION" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="ID_NOTIFICATION"/>
+          <Argument type="String" name="USER_NAME"/>
+          <Argument type="String" name="NAME_SPORT"/>
+          <Argument type="int" name="ID_EVENT"/>
+          <Argument type="LocalDate" name="NOTIFICATION_DATE"/>
+          <Argument type="LocalDateTime" name="TIME_NOTIFICATION"/>
+          <Argument type="LocalDateTime" name="EXPIRATION_TIME"/>
+          <Argument type="String" name="NOTIFICATION_DESCRIPTION"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getID_NOTIFICATION" returnType="int" visibility="public"/>
+        <Method name="setID_NOTIFICATION" returnType="void" visibility="public">
+          <Argument type="int" name="ID_NOTIFICATION"/>
+        </Method>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+        <Method name="getID_EVENT" returnType="int" visibility="public"/>
+        <Method name="setID_EVENT" returnType="void" visibility="public">
+          <Argument type="int" name="ID_EVENT"/>
+        </Method>
+        <Method name="getNOTIFICATION_DATE" returnType="LocalDate" visibility="public"/>
+        <Method name="setNOTIFICATION_DATE" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="NOTIFICATION_DATE"/>
+        </Method>
+        <Method name="getTIME_NOTIFICATION" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setTIME_NOTIFICATION" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="TIME_NOTIFICATION"/>
+        </Method>
+        <Method name="getEXPIRATION_TIME" returnType="LocalDateTime" visibility="public"/>
+        <Method name="setEXPIRATION_TIME" returnType="void" visibility="public">
+          <Argument type="LocalDateTime" name="EXPIRATION_TIME"/>
+        </Method>
+        <Method name="getNOTIFICATION_DESCRIPTION" returnType="String" visibility="public"/>
+        <Method name="setNOTIFICATION_DESCRIPTION" returnType="void" visibility="public">
+          <Argument type="String" name="NOTIFICATION_DESCRIPTION"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RolesModel" package="com.oriun.oriun.Models" visibility="public" xPosition="1602.0" yPosition="331.0">
+      <Fields>
+        <Field name="ROL_NAME" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SportModel" package="com.oriun.oriun.Models" visibility="public" xPosition="271.0" yPosition="1529.0">
+      <Fields>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserModel" package="com.oriun.oriun.Models" visibility="public" xPosition="905.0" yPosition="104.0">
+      <Fields>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="ROL_NAME" type="String" visibility="private"/>
+        <Field name="PASSWORD" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="user_name"/>
+          <Argument type="String" name="rol_name"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getROL_NAME" returnType="String" visibility="public"/>
+        <Method name="setROL_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="ROL_NAME"/>
+        </Method>
+        <Method name="getPASSWORD" returnType="String" visibility="public"/>
+        <Method name="setPASSWORD" returnType="void" visibility="public">
+          <Argument type="String" name="PASSWORD"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User_eventModel" package="com.oriun.oriun.Models" visibility="public" xPosition="119.0" yPosition="1187.0">
+      <Fields>
+        <Field name="user_eventPK" type="User_eventPK" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getID_EVENT" returnType="int" visibility="public"/>
+        <Method name="setID_EVENT" returnType="void" visibility="public">
+          <Argument type="int" name="ID_EVENT"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User_eventPK" package="com.oriun.oriun.Models" visibility="public" xPosition="119.0" yPosition="812.0">
+      <Fields>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="ID_EVENT" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getID_EVENT" returnType="int" visibility="public"/>
+        <Method name="setID_EVENT" returnType="void" visibility="public">
+          <Argument type="int" name="ID_EVENT"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User_sportsModel" package="com.oriun.oriun.Models" visibility="public" xPosition="782.0" yPosition="126.0">
+      <Fields>
+        <Field name="user_sportsPK" type="User_sportsPK" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User_sportsPK" package="com.oriun.oriun.Models" visibility="public" xPosition="445.0" yPosition="1709.0">
+      <Fields>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="NAME_SPORT" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getNAME_SPORT" returnType="String" visibility="public"/>
+        <Method name="setNAME_SPORT" returnType="void" visibility="public">
+          <Argument type="String" name="NAME_SPORT"/>
+        </Method>
+        <Method name="getUSER_NAME" returnType="String" visibility="public"/>
+        <Method name="setUSER_NAME" returnType="void" visibility="public">
+          <Argument type="String" name="USER_NAME"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PEncoder" package="com.oriun.oriun.Security" visibility="public" xPosition="662.0" yPosition="1834.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="WebSecurityConfig" package="com.oriun.oriun.Security" visibility="public" xPosition="549.0" yPosition="220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="configure" returnType="void" visibility="protected">
+          <Argument type="HttpSecurity" name="http"/>
+        </Method>
+        <Method name="passwordEncoder" returnType="PasswordEncoder" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ElementService" package="com.oriun.oriun.Services" visibility="public" xPosition="205.0" yPosition="1422.0">
+      <Fields>
+        <Field name="elementRepository" type="ElementRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getElements" returnType="ArrayList&lt;ElementModel&gt;" visibility="public"/>
+        <Method name="saveElement" returnType="ElementModel" visibility="public">
+          <Argument type="ElementModel" name="element"/>
+        </Method>
+        <Method name="getElementById" returnType="Optional&lt;ElementModel&gt;" visibility="public">
+          <Argument type="int" name="element_id"/>
+        </Method>
+        <Method name="updateElement" returnType="ElementModel" visibility="public">
+          <Argument type="int" name="elementID"/>
+          <Argument type="ElementModel" name="newelement"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EventService" package="com.oriun.oriun.Services" visibility="public" xPosition="782.0" yPosition="1873.0">
+      <Fields>
+        <Field name="eventRepository" type="EventRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEvents" returnType="ArrayList&lt;EventModel&gt;" visibility="public"/>
+        <Method name="saveEvent" returnType="EventModel" visibility="public">
+          <Argument type="EventModel" name="event"/>
+        </Method>
+        <Method name="getEventById" returnType="Optional&lt;EventModel&gt;" visibility="public">
+          <Argument type="int" name="event_id"/>
+        </Method>
+        <Method name="updateEvent" returnType="EventModel" visibility="public">
+          <Argument type="int" name="eventID"/>
+          <Argument type="EventModel" name="newevent"/>
+        </Method>
+        <Method name="deleteEvent" returnType="EventModel" visibility="public">
+          <Argument type="EventModel" name="event"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LocationSibuService" package="com.oriun.oriun.Services" visibility="public" xPosition="1865.0" yPosition="1248.0">
+      <Fields>
+        <Field name="locationsibuRepository" type="LocationsibuRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getlocationsibu" returnType="ArrayList&lt;LocationsibuModel&gt;" visibility="public"/>
+        <Method name="savelocationsibu" returnType="LocationsibuModel" visibility="public">
+          <Argument type="LocationsibuModel" name="locationSibu"/>
+        </Method>
+        <Method name="getlocationsibuByName" returnType="Optional&lt;LocationsibuModel&gt;" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="updatelocationsibu" returnType="LocationsibuModel" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="LocationsibuModel" name="newlocationsibu"/>
+        </Method>
+        <Method name="deleteLocationsibu" returnType="LocationsibuModel" visibility="public">
+          <Argument type="LocationsibuModel" name="locationsibu"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LocationsportService" package="com.oriun.oriun.Services" visibility="public" xPosition="1822.0" yPosition="1779.0">
+      <Fields>
+        <Field name="locationsportRepository" type="LocationsportRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getLocationsports" returnType="ArrayList&lt;LocationsportModel&gt;" visibility="public"/>
+        <Method name="saveLocationsport" returnType="LocationsportModel" visibility="public">
+          <Argument type="LocationsportModel" name="element"/>
+        </Method>
+        <Method name="getLocationsportById" returnType="Optional&lt;LocationsportModel&gt;" visibility="public">
+          <Argument type="String" name="element_id"/>
+        </Method>
+        <Method name="updateLocationsport" returnType="LocationsportModel" visibility="public">
+          <Argument type="String" name="newname"/>
+          <Argument type="String" name="oldname"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NotificationService" package="com.oriun.oriun.Services" visibility="public" xPosition="154.0" yPosition="692.0">
+      <Fields>
+        <Field name="notificationRepository" type="NotificationRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getNotifications" returnType="ArrayList&lt;NotificationModel&gt;" visibility="public"/>
+        <Method name="saveNotification" returnType="NotificationModel" visibility="public">
+          <Argument type="NotificationModel" name="notification"/>
+        </Method>
+        <Method name="getNotificationById" returnType="Optional&lt;NotificationModel&gt;" visibility="public">
+          <Argument type="int" name="id_notification"/>
+        </Method>
+        <Method name="updateNotification" returnType="NotificationModel" visibility="public">
+          <Argument type="int" name="id_notification"/>
+          <Argument type="NotificationModel" name="newnotif"/>
+        </Method>
+        <Method name="deleteNotification" returnType="NotificationModel" visibility="public">
+          <Argument type="NotificationModel" name="notification"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RolesService" package="com.oriun.oriun.Services" visibility="public" xPosition="1865.0" yPosition="751.0">
+      <Fields>
+        <Field name="rolesRepository" type="RolesRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRoles" returnType="ArrayList&lt;RolesModel&gt;" visibility="public"/>
+        <Method name="saveRoles" returnType="RolesModel" visibility="public">
+          <Argument type="RolesModel" name="roles"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SportService" package="com.oriun.oriun.Services" visibility="public" xPosition="1689.0" yPosition="421.0">
+      <Fields>
+        <Field name="sportRepository" type="SportRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSports" returnType="ArrayList&lt;SportModel&gt;" visibility="public"/>
+        <Method name="saveSport" returnType="SportModel" visibility="public">
+          <Argument type="SportModel" name="sport"/>
+        </Method>
+        <Method name="updateSport" returnType="SportModel" visibility="public">
+          <Argument type="String" name="oldsport"/>
+          <Argument type="String" name="newsport"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserService" package="com.oriun.oriun.Services" visibility="public" xPosition="352.0" yPosition="1625.0">
+      <Fields>
+        <Field name="userRepository" type="UserRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUsers" returnType="ArrayList&lt;UserModel&gt;" visibility="public"/>
+        <Method name="getUser" returnType="Optional&lt;UserModel&gt;" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="saveUser" returnType="UserModel" visibility="public">
+          <Argument type="UserModel" name="user"/>
+        </Method>
+        <Method name="updateUser" returnType="UserModel" visibility="public">
+          <Argument type="String" name="userid"/>
+          <Argument type="UserModel" name="newuser"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User_eventService" package="com.oriun.oriun.Services" visibility="public" xPosition="1278.0" yPosition="144.0">
+      <Fields>
+        <Field name="user_eventRepository" type="User_eventRepository" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getallUser_events" returnType="ArrayList&lt;User_eventModel&gt;" visibility="public"/>
+        <Method name="getUser_event" returnType="List&lt;User_eventModel&gt;" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="saveUser_event" returnType="User_eventModel" visibility="public">
+          <Argument type="User_eventModel" name="user"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Teste" package="teste" visibility="public" xPosition="1891.0" yPosition="1125.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ElementRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="205.0" yPosition="577.0">
+      <Methods/>
+    </Interface>
+    <Interface name="EventRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1891.0" yPosition="874.0">
+      <Methods/>
+    </Interface>
+    <Interface name="LocationsibuRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1156.0" yPosition="1886.0">
+      <Methods/>
+    </Interface>
+    <Interface name="LocationsportRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="271.0" yPosition="470.0">
+      <Methods/>
+    </Interface>
+    <Interface name="Location_sport_sportsRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1822.0" yPosition="1366.0">
+      <Methods/>
+    </Interface>
+    <Interface name="NotificationRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1763.0" yPosition="523.0">
+      <Methods/>
+    </Interface>
+    <Interface name="RolesRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="102.0" yPosition="937.0">
+      <Methods/>
+    </Interface>
+    <Interface name="SportRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1394.0" yPosition="191.0">
+      <Methods/>
+    </Interface>
+    <Interface name="UserRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1156.0" yPosition="113.0">
+      <Methods/>
+    </Interface>
+    <Interface name="User_eventRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1763.0" yPosition="1476.0">
+      <Methods>
+        <Method name="findByUSER_NAME" returnType="List&lt;User_eventModel&gt;" visibility="package">
+          <Argument type="String" name="username"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="User_sportsRepository" package="com.oriun.oriun.Repositories" visibility="public" xPosition="1503.0" yPosition="253.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="com.oriun.oriun.Controllers.SportController" target="com.oriun.oriun.Models.SportModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Controllers.RolesController" target="com.oriun.oriun.Models.RolesModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Controllers.EventController" target="com.oriun.oriun.Models.EventModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.UserService" target="com.oriun.oriun.Models.UserModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="locationsibuRepository" source="com.oriun.oriun.Services.LocationSibuService" target="com.oriun.oriun.Repositories.LocationsibuRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.ElementService" target="com.oriun.oriun.Models.ElementModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user_sportsPK" source="com.oriun.oriun.Models.User_sportsModel" target="com.oriun.oriun.Models.User_sportsPK" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.EventService" target="com.oriun.oriun.Models.EventModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="notificationRepository" source="com.oriun.oriun.Services.NotificationService" target="com.oriun.oriun.Repositories.NotificationRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.RolesService" target="com.oriun.oriun.Models.RolesModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.LocationSibuService" target="com.oriun.oriun.Models.LocationsibuModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="elementRepository" source="com.oriun.oriun.Services.ElementService" target="com.oriun.oriun.Repositories.ElementRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rolesRepository" source="com.oriun.oriun.Services.RolesService" target="com.oriun.oriun.Repositories.RolesRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="elementService" source="com.oriun.oriun.Controllers.ElementController" target="com.oriun.oriun.Services.ElementService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="eventRepository" source="com.oriun.oriun.Services.EventService" target="com.oriun.oriun.Repositories.EventRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user_eventPK" source="com.oriun.oriun.Models.User_eventModel" target="com.oriun.oriun.Models.User_eventPK" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user_eventService" source="com.oriun.oriun.Controllers.EventController" target="com.oriun.oriun.Services.User_eventService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="eventService" source="com.oriun.oriun.Controllers.EventController" target="com.oriun.oriun.Services.EventService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sportRepository" source="com.oriun.oriun.Services.SportService" target="com.oriun.oriun.Repositories.SportRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user_eventRepository" source="com.oriun.oriun.Services.User_eventService" target="com.oriun.oriun.Repositories.User_eventRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="notificationService" source="com.oriun.oriun.Controllers.NotificationController" target="com.oriun.oriun.Services.NotificationService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Controllers.ElementController" target="com.oriun.oriun.Models.ElementModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Repositories.User_eventRepository" target="com.oriun.oriun.Models.User_eventModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Controllers.NotificationController" target="com.oriun.oriun.Models.NotificationModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.NotificationService" target="com.oriun.oriun.Models.NotificationModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sportService" source="com.oriun.oriun.Controllers.SportController" target="com.oriun.oriun.Services.SportService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userService" source="com.oriun.oriun.Controllers.UserController" target="com.oriun.oriun.Services.UserService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userRepository" source="com.oriun.oriun.Services.UserService" target="com.oriun.oriun.Repositories.UserRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.User_eventService" target="com.oriun.oriun.Models.User_eventModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="locationsportRepository" source="com.oriun.oriun.Services.LocationsportService" target="com.oriun.oriun.Repositories.LocationsportRepository" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="location_sportsPK" source="com.oriun.oriun.Models.Location_sport_sportsModel" target="com.oriun.oriun.Models.Location_sportsPK" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.LocationsportService" target="com.oriun.oriun.Models.LocationsportModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Services.SportService" target="com.oriun.oriun.Models.SportModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.oriun.oriun.Controllers.UserController" target="com.oriun.oriun.Models.UserModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rolesService" source="com.oriun.oriun.Controllers.RolesController" target="com.oriun.oriun.Services.RolesService" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
